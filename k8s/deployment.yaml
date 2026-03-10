@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-locator
+  labels:
+    app: store-locator
+    domain: customer-experience
+    team: checkout-squad
+    tier: "Tier 2 - Standard"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: store-locator
+  template:
+    metadata:
+      labels:
+        app: store-locator
+    spec:
+      containers:
+        - name: store-locator
+          image: walmart-registry/store-locator:latest
+          ports:
+            - containerPort: 8080
